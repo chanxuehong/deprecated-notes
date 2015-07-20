@@ -82,7 +82,7 @@ func walk(path string, info os.FileInfo, inErr error) (err error) {
 		if err != nil {
 			return err
 		}
-		return os.MkdirAll(dstDir, info.Mode().Perm())
+		return os.MkdirAll(dstDir, 0666)
 
 	default:
 		return nil
@@ -131,7 +131,7 @@ func main() {
 	}
 
 	dstFileInfo, err := os.Stat(dstRoot)
-	if err != nil {
+	if err != nil { // 可能是路径不正确, 也有可能是路径不存在
 		if err := os.MkdirAll(dstRoot, 0666); err != nil {
 			fmt.Println(err)
 			return
