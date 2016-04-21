@@ -237,6 +237,10 @@ type TMultiplexedProcessor
     func (t *TMultiplexedProcessor) RegisterProcessor(name string, processor TProcessor)
 	
 // ProtocolFactory -----------------------------------------------------------------------------------------------------
+type TBinaryProtocolFactory
+    func NewTBinaryProtocolFactory(strictRead, strictWrite bool) *TBinaryProtocolFactory
+    func NewTBinaryProtocolFactoryDefault() *TBinaryProtocolFactory
+    func (p *TBinaryProtocolFactory) GetProtocol(t TTransport) TProtocol
 type TCompactProtocolFactory
     func NewTCompactProtocolFactory() *TCompactProtocolFactory
     func (p *TCompactProtocolFactory) GetProtocol(trans TTransport) TProtocol
@@ -521,10 +525,6 @@ type TSimpleJSONProtocol
 type StreamTransportFactory
     func NewStreamTransportFactory(reader io.Reader, writer io.Writer, isReadWriter bool) *StreamTransportFactory
     func (p *StreamTransportFactory) GetTransport(trans TTransport) TTransport
-type TBinaryProtocolFactory
-    func NewTBinaryProtocolFactory(strictRead, strictWrite bool) *TBinaryProtocolFactory
-    func NewTBinaryProtocolFactoryDefault() *TBinaryProtocolFactory
-    func (p *TBinaryProtocolFactory) GetProtocol(t TTransport) TProtocol
 type TBufferedTransportFactory
     func NewTBufferedTransportFactory(bufferSize int) *TBufferedTransportFactory
     func (p *TBufferedTransportFactory) GetTransport(trans TTransport) TTransport
